@@ -2,6 +2,7 @@ package org.example.cadastroDeUsuario.controller;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import org.example.cadastroDeUsuario.model.DadosAtualizadoUsuario;
 import org.example.cadastroDeUsuario.model.Usuario;
 import org.example.cadastroDeUsuario.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class UsuarioController {
 
     @PostMapping("/usuarios")
     public ResponseEntity cadastrar(@RequestBody @Valid Usuario usuario) {
-         service.cadastrarUsuario(usuario);
+        service.cadastrarUsuario(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
     }
 
@@ -39,5 +40,11 @@ public class UsuarioController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity atualizar(@PathVariable Long id, @RequestBody DadosAtualizadoUsuario novosDaddos) {
+        service.atualizarUsuario(id, novosDaddos);
+        return ResponseEntity.ok().body(novosDaddos);
     }
 }

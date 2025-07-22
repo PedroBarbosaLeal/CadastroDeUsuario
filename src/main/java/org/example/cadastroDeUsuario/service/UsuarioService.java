@@ -1,6 +1,9 @@
 package org.example.cadastroDeUsuario.service;
 
-import org.example.cadastroDeUsuario.infra.EmailJaCadastradoException;
+import jakarta.transaction.Transactional;
+import org.example.cadastroDeUsuario.infra.exceptions.EmailJaCadastradoException;
+import org.example.cadastroDeUsuario.infra.exceptions.IdNaoEncontrado;
+import org.example.cadastroDeUsuario.model.DadosAtualizadoUsuario;
 import org.example.cadastroDeUsuario.model.Usuario;
 import org.example.cadastroDeUsuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,16 @@ public class UsuarioService {
            return true;
        }else{
            return false;
+       }
+    }
+    @Transactional
+    public Boolean atualizarUsuario(Long id, DadosAtualizadoUsuario novosDados){
+       if(repository.existsById(id)){
+           Usuario usuario = repository.findById(id).get();
+           usuario.atualizarUsuario(novosDados);
+           return true;
+       }else{
+         throw new IdNaoEncontrado("o ID digitado não foi encontrado, tente novamente!");
        }
     }
 

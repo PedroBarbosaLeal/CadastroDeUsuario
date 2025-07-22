@@ -11,6 +11,11 @@ public class Usuario {
     public Usuario() {
     }
 
+    public void atualizarUsuario(DadosAtualizadoUsuario novosDados){
+        this.idade = novosDados.idade();
+        this.descricao = novosDados.descricao();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

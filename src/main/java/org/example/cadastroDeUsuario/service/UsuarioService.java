@@ -25,4 +25,13 @@ public class UsuarioService {
         return repository.findAll();
     }
 
+    public Boolean Deletar (Long id){
+       if(repository.existsById(id)){
+           repository.deleteById(id);
+           return true;
+       }else{
+           return false;
+       }
+    }
+
 }

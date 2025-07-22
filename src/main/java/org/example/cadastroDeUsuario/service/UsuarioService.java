@@ -1,5 +1,6 @@
 package org.example.cadastroDeUsuario.service;
 
+import org.example.cadastroDeUsuario.infra.EmailJaCadastradoException;
 import org.example.cadastroDeUsuario.model.Usuario;
 import org.example.cadastroDeUsuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,13 @@ public class UsuarioService {
         this.repository = repository;
     }
 
-    public void cadastrarUsuario(Usuario usuario){
-        repository.save(usuario);
+    public Boolean cadastrarUsuario(Usuario usuario){
+        if(repository.existsByEmail(usuario.getEmail())){
+            throw new EmailJaCadastradoException("O email informado já está cadastrado");
+        }else{
+            repository.save(usuario);
+            return true;
+        }
     }
 
     public List<Usuario> listaDeUsuario(){

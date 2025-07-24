@@ -11,7 +11,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public void atualizarUsuario(DadosAtualizadoUsuario novosDados){
+    public void atualizarUsuario(DadosAtualizadoUsuario novosDados) { //metodo para atualizar os dados, passando como parâmetro o DTO que criei
         this.idade = novosDados.idade();
         this.descricao = novosDados.descricao();
     }
@@ -24,7 +24,7 @@ public class Usuario {
     private String nome;
 
     @NotNull(message = "Adicione sua idade")
-    private int  idade;
+    private int idade;
 
     @Email(message = "Email inválido")
     @NotBlank(message = "Este é um campo obrigatório")
@@ -33,6 +33,8 @@ public class Usuario {
 
     @NotBlank(message = "Adicione uma descricao")
     private String descricao;
+
+
 
     public Long getId() {
         return id;

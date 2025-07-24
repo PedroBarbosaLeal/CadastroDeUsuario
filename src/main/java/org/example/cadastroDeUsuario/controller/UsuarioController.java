@@ -1,6 +1,5 @@
 package org.example.cadastroDeUsuario.controller;
 
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.example.cadastroDeUsuario.model.DadosAtualizadoUsuario;
 import org.example.cadastroDeUsuario.model.Usuario;
@@ -32,7 +31,6 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/deletarUsuario/{id}")
-    @Transactional
     public ResponseEntity<?> deletarUsuario(@PathVariable Long id) {
         Boolean usuario = service.Deletar(id);
         if (usuario) {

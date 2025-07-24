@@ -2,7 +2,7 @@ package org.example.cadastroDeUsuario.service;
 
 import jakarta.transaction.Transactional;
 import org.example.cadastroDeUsuario.infra.exceptions.EmailJaCadastradoException;
-import org.example.cadastroDeUsuario.infra.exceptions.IdNaoEncontrado;
+import org.example.cadastroDeUsuario.infra.exceptions.IdNaoEncontradoException;
 import org.example.cadastroDeUsuario.model.DadosAtualizadoUsuario;
 import org.example.cadastroDeUsuario.model.Usuario;
 import org.example.cadastroDeUsuario.repository.UsuarioRepository;
@@ -49,7 +49,7 @@ public class UsuarioService {
            usuario.atualizarUsuario(novosDados);
            return true;
        }else{
-         throw new IdNaoEncontrado("o ID digitado não foi encontrado, tente novamente!");
+         throw new IdNaoEncontradoException("o ID digitado não foi encontrado, tente novamente!");
        }
     }
 

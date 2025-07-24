@@ -1,7 +1,7 @@
 package org.example.cadastroDeUsuario.infra;
 
 import org.example.cadastroDeUsuario.infra.exceptions.EmailJaCadastradoException;
-import org.example.cadastroDeUsuario.infra.exceptions.IdNaoEncontrado;
+import org.example.cadastroDeUsuario.infra.exceptions.IdNaoEncontradoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,8 +14,8 @@ public class TratadorDeErros {
     public ResponseEntity<String> tratarEmailDuplicado(EmailJaCadastradoException ex){
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
-    @ExceptionHandler(IdNaoEncontrado.class)
-    public ResponseEntity<String> tratarIdNaoEncontrado(IdNaoEncontrado ex){
+    @ExceptionHandler(IdNaoEncontradoException.class)
+    public ResponseEntity<String> tratarIdNaoEncontrado(IdNaoEncontradoException ex){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 }
